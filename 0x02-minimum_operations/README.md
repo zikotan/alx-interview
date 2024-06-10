@@ -1,27 +1,60 @@
-In a text file, there is a single character H. Your text editor can execute only two operations in this file: Copy All and Paste. Given a number n, write a method that calculates the fewest number of operations needed to result in exactly n H characters in the file.
+# 0x02. Minimum Operations
 
-Prototype: def minOperations(n)
-Returns an integer
-If n is impossible to achieve, return 0
-Example:
+This repository contains a solution to the problem of calculating the minimum number of operations needed to achieve a given number of characters using only "Copy All" and "Paste" operations.
 
+## Description
+
+In a text file, there is a single character `H`. Your text editor can execute only two operations in this file: Copy All and Paste. Given a number `n`, write a method that calculates the fewest number of operations needed to result in exactly `n` `H` characters in the file.
+
+## Concepts Needed
+
+To devise an efficient solution for this problem, it is helpful to understand the following concepts:
+
+1. **Dynamic Programming**:
+   - Breaking down the problem into simpler subproblems and building up the solution.
+   - [Dynamic Programming (GeeksforGeeks)](https://www.geeksforgeeks.org/dynamic-programming/)
+
+2. **Prime Factorization**:
+   - Understanding prime factorization is crucial since the problem can be reduced to finding the sum of the prime factors of the target number `n`.
+   - [Prime Factorization (Khan Academy)](https://www.khanacademy.org/math/algebra/x15aaf8a5d3bb4ae7:polynomials/x15aaf8a5d3bb4ae7:factoring-polynomials/a/intro-to-polynomial-factorization-review)
+
+3. **Code Optimization**:
+   - Approaching problems from an optimization perspective to find the most efficient solution.
+   - [How to optimize Python code](https://realpython.com/python-performance/)
+
+4. **Greedy Algorithms**:
+   - Choosing the best option at each step.
+   - [Greedy Algorithms (GeeksforGeeks)](https://www.geeksforgeeks.org/greedy-algorithms/)
+
+5. **Basic Python Programming**:
+   - Proficiency in Python, including loops, conditionals, and functions, is necessary to implement the solution.
+   - [Python Functions (Python Official Documentation)](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)
+
+## Requirements
+
+- Allowed editors: `vi`, `vim`, `emacs`
+- All your files will be interpreted/compiled on Ubuntu 20.04 LTS using `python3` (version 3.4.3)
+- All your files should end with a new line
+- The first line of all your files should be exactly `#!/usr/bin/python3`
+- A `README.md` file, at the root of the folder of the project, is mandatory
+- Your code should be documented
+- Your code should use the PEP 8 style (version 1.7.x)
+- All your files must be executable
+
+## Tasks
+
+### Task 0: Minimum Operations
+
+- **File**: `0-minoperations.py`
+- **Description**: Write a method that calculates the fewest number of operations needed to result in exactly `n` `H` characters in the file.
+- **Prototype**: `def minOperations(n)`
+- **Returns**: An integer, the minimum number of operations needed. If `n` is impossible to achieve, return `0`.
+
+#### Example
+
+```python
 n = 9
 
 H => Copy All => Paste => HH => Paste =>HHH => Copy All => Paste => HHHHHH => Paste => HHHHHHHHH
 
 Number of operations: 6
-
-Just like the divide and conquer algorithm, dynamic programming solves problems by combining the solutions to sub-problems. Divide and conquer algorithms partition the problem into independent sub-problems to solve the sub-problems recursively and then combine their solutions to solve the original problem. In contrast, dynamic programming is applicable when the sub-problem is not independent, that is when sub-problems share sub-problems. Therefore, a dynamic programming algorithm solves every sub-problem just once and then saves its answers in a table, thereby avoiding the work of recomputing the answer every time the subproblem is encountered.
-
-The development of a dynamic programming algorithm can be broken into the sequence of four steps:
-
-Characterize the structure of an optimal solution
-Recursively define the value of the optimal solution
-Compute the value of an optimal solution in a bottom-up fashion
-Construct an optimal solution from computed information
-Dynamic programming algorithm is designed in a way to optimize the given problem to get output by combining the solutions of sub-problems and appearing to the “the principle of optimality”.
-
-What is the Principle of Optimality?
-The dynamic programming algorithm obtains the solution using the principle of optimality. The principle of optimality states that “ in an optimal sequence of decisions or choices, each subsequence must also be optimal”. When it is not possible to apply the principle of optimality it is almost impossible to obtain the solution using the dynamic programming approach.
-
-The principle of optimality: “If k is a node on the shortest path from i to j, then the part of the path from i to k, and the part from k to i, must also be optimal.”

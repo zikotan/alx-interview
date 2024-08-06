@@ -1,86 +1,42 @@
 #!/usr/bin/python3
-"""
-Module 0-prime_game
-"""
-
-
-def isPrime(num):
-    """
-    checks if a num
-    is a prime number
-    """
-    if num < 2:
-        return False
-    for i in range(2, num):
-        if (num % i) == 0:
-            return False
-    return True
-
-
-def getPrime(ints):
-    """
-    Returns a prime number
-    from a set
-    """
-    for n in ints:
-        if isPrime(n):
-            return n
-    return None
-
-
-def removePrimeNo(ints, prime):
-    """
-    removes a prime number from a set
-    """
-    ints.remove(prime)
-
-
-def removeMultiples(ints, number, player):
-    """removes multiples of a number"""
-    for x in ints.copy():
-        if (x % number) == 0:
-            # print(f"{player} removes {x}")
-            ints.remove(x)
+"""0. Prime Game - Maria and Ben are playing a game"""
 
 
 def isWinner(x, nums):
+    """x - rounds
+    nums - numbers list
     """
-    Determines the winner
-    """
-    m_wins = 0
-    b_wins = 0
-    canPlay = True
-    times = 0
-
-    if not x or not nums:
+    if x <= 0 or nums is None:
+        return None
+    if x != len(nums):
         return None
 
-    for n in nums:
-        ints = set([n for n in range(1, n + 1)])
-        player = "m"
-        while times <= x:
-            prime = getPrime(ints)
-            # A win for the other player
-            # when no more prime numbers exist
-            # print(f"{player} picks {prime}")
-            if prime is None:
-                if player == "m":
-                    b_wins += 1
-                else:
-                    m_wins += 1
-                break
-            # remove prime number
-            # print(f"{player} removes {prime}")
-            removePrimeNo(ints, prime)
-            removeMultiples(ints, prime, player)
+    ben = 0
+    maria = 0
 
-            if player == "b":
-                player = "m"
-            else:
-                player = "b"
-            times += 1
-        times = 0
+    a = [1 for x in range(sorted(nums)[-1] + 1)]
+    a[0], a[1] = 0, 0
+    for i in range(2, len(a)):
+        rm_multiples(a, i)
 
-    if m_wins == b_wins:
-        return None
-    return "Maria" if m_wins > b_wins else "Ben"
+    for i in nums:
+        if sum(a[0:i + 1]) % 2 == 0:
+            ben += 1
+        else:
+            maria += 1
+    if ben > maria:
+        return "Ben"
+    if maria > ben:
+        return "Maria"
+    return None
+
+
+def rm_multiples(ls, x):
+    """removes multiple
+    of primes
+    """
+    for i in range(2, len(ls)):
+        try:
+            ls[i * x] = 0
+        except (ValueError, IndexError):
+            break
